@@ -13,25 +13,25 @@ var a = 5;
 var b = 10;
 var c = function(a, b, c) {
   var x = 10;
-  console.log(x);
-  console.log(a);
+  console.log(x); // Devuelve 10
+  console.log(a); // Devuelve 8 
   var f = function(a, b, c) {
-    b = a;
-    console.log(b);
+    b = a; 
+    console.log(b); //Devuelve 8 porque b = a 
     b = c;
     var x = 5;
   }
   f(a,b,c);
-  console.log(b);
+  console.log(b); // Devuelve 9 
 }
 c(8,9,10);
-console.log(b);
-console.log(x);
+console.log(b); // Devuelve 10
+console.log(x); // Devuelve 1 
 ```
 
 ```javascript
-console.log(bar);
-console.log(baz);
+console.log(bar); // undefined por agarra la variable pero no el contenido
+console.log(baz); // baz is not defined
 foo();
 function foo() { console.log('Hola!'); }
 var bar = 1;
@@ -43,19 +43,19 @@ var instructor = "Tony";
 if(true) {
     var instructor = "Franco";
 }
-console.log(instructor);
+console.log(instructor); // Devuelve "Franco" 
 ```
 
 ```javascript
 var instructor = "Tony";
-console.log(instructor);
+console.log(instructor); // Devuelve "Tony "
 (function() {
    if(true) {
       var instructor = "Franco";
-      console.log(instructor);
+      console.log(instructor); // Devuelve "Franco "
    }
-})();
-console.log(instructor);
+})();// Funcion autoconvocada
+console.log(instructor);// Devuelve "Tony"
 ```
 
 ```javascript
@@ -64,33 +64,33 @@ let pm = "Franco";
 if (true) {
     var instructor = "The Flash";
     let pm = "Reverse Flash";
-    console.log(instructor);
-    console.log(pm);
+    console.log(instructor); // Devuelve "The Flash"
+    console.log(pm);// Devuelve "Reverse Flash"
 }
-console.log(instructor);
-console.log(pm);
+console.log(instructor); //Devuelve "The Falsh"
+console.log(pm); //Devuelve "Franco"
 ```
 ### Coerción de Datos
 
 ¿Cuál crees que será el resultado de la ejecución de estas operaciones?:
 
 ```javascript
-6 / "3"
-"2" * "3"
-4 + 5 + "px"
-"$" + 4 + 5
-"4" - 2
-"4px" - 2
-7 / 0
-{}[0]
-parseInt("09")
-5 && 2
-2 && 5
-5 || 0
-0 || 5
-[3]+[3]-[10]
-3>2>1
-[] == ![]
+6 / "3" // Devuelve 2
+"2" * "3"//Devuelve 6
+4 + 5 + "px"//Devuelve "9px"
+"$" + 4 + 5//Devuelve "$45"
+"4" - 2//Devuelve 2 
+"4px" - 2//Devuelve NaN
+7 / 0//Devuelve Infinify
+{}[0]//Devuelve [0]
+parseInt("09")//Devuelve 9
+5 && 2//Devuelve 2
+2 && 5//Devuelve 5
+5 || 0//Devuelve 5
+0 || 5//Devuelve 5
+[3]+[3]-[10]//Devuelve '23'
+3>2>1//Devuelve false
+[] == ![]//Devuelve true
 ```
 
 > Si te quedó alguna duda repasá con [este artículo](http://javascript.info/tutorial/object-conversion).
@@ -102,8 +102,8 @@ parseInt("09")
 
 ```javascript
 function test() {
-   console.log(a);
-   console.log(foo());
+   console.log(a); // Devuelve undefined
+   console.log(foo());// Devuelve 2
 
    var a = 1;
    function foo() {
@@ -114,10 +114,10 @@ function test() {
 test();
 ```
 
-Y el de este código? :
+Y el de este código? :  
 
 ```javascript
-var snack = 'Meow Mix';
+var snack = 'Meow Mix'; //// No tiene hoisting
 
 function getFood(food) {
     if (food) {
@@ -147,11 +147,11 @@ var obj = {
    }
 };
 
-console.log(obj.prop.getFullname());
+console.log(obj.prop.getFullname()); //'Aurelio De Rosa'
 
 var test = obj.prop.getFullname;
 
-console.log(test());
+console.log(test()); //  undefined
 ```
 
 ### Event loop
@@ -159,12 +159,13 @@ console.log(test());
 Considerando el siguiente código, ¿Cuál sería el orden en el que se muestra por consola? ¿Por qué?
 
 ```javascript
-function printing() {
-   console.log(1);
-   setTimeout(function() { console.log(2); }, 1000);
-   setTimeout(function() { console.log(3); }, 0);
-   console.log(4);
-}
+// function printing() {
+//    console.log(1);
+//    setTimeout(function() { console.log(2); }, 1000);
+//    setTimeout(function() { console.log(3); }, 0);
+//    console.log(4);
+// }
 
-printing();
+// printing();
+//1 - 4 - 3 - 2 
 ```
